@@ -173,9 +173,9 @@
         metadata:
             owner: release+funsize@mozilla.com
             source: https://github.com/mozilla/funsize
-            name: "[funsize] Recompress LZMA-compressed MARs to BZ2 ({{ platform }} {{ chunk }}/{{ platform_info["chunks"] }}"
+            name: "[funsize] Recompress LZMA-compressed MARs to BZ2 {{ platform }} {{ chunk }}/{{ platform_info["chunks"] }}"
             description: |
-                Recompress LZMA-compressed MARs to BZ2 ({{ platform }} {{ chunk }}/{{ platform_info["chunks"] }}.
+                Recompress LZMA-compressed MARs to BZ2 {{ platform }} {{ chunk }}/{{ platform_info["chunks"] }}.
 
         routes:
             - tc-treeherder-stage.v2.{{ branch }}.{{ revision }}.{{ pushlog_id }}
@@ -183,7 +183,7 @@
             - index.releases.v1.{{ branch }}.{{ revision }}.{{ product }}.{{ version | replace(".", "_") }}.build{{ buildNumber }}.recompress.{{ platform }}.{{ chunk }}
             - index.releases.v1.{{ branch }}.latest.{{ product }}.latest.recompress.{{ platform }}.{{ chunk }}
         extra:
-            {{ task_notifications(taskname="[{} {} build{}] [funsize] Recomress comlete MARs {} {}".format(product, version, buildNumber, platform, chunk), completed=["releasetasks"], failed=["releasetasks"], exception=["releasetasks"]) | indent(12)}}
+            {{ task_notifications(taskname="[{} {} build{}] [funsize] Recompress complete MARs {} {}".format(product, version, buildNumber, platform, chunk), completed=["releasetasks"], failed=["releasetasks"], exception=["releasetasks"]) | indent(12)}}
             {{ common_extras(taskname='{}_repackage_complete_mars'.format(recompress_basename), locales=our_locales, platform=platform) | indent(12)}}
             funsize:
                 completes:
